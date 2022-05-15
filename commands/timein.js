@@ -13,12 +13,15 @@ const info = {
 
     async interaction(interaction) {
         const timezone = interaction.options.getString("timezone");
-        console.log(moment.tz(timezone));
         if (timezone == "+" || timezone == "-") {
             console.log(".")
         };
         if (moment.tz.zone(timezone) != null) {
-            await interaction.reply(moment.tz(timezone).format("HH:mm"));
+            const timezoneName = ((moment.tz(timezone).format("zz")[0].toLowerCase() != moment.tz(timezone).format("zz")[0].toUpperCase()) 
+                                   ? `${ moment.tz(timezone).format("zz") } (UTC${ moment.tz(timezone).format("Z") })`
+                                   : `UTC${ moment.tz(timezone).format("Z") }`)
+
+            await interaction.reply(`The time in ${ timezoneName } is **${ moment.tz(timezone).format("HH:mm") }**`);
             return
         } else {
             await interaction.reply("Invalid zone!");
