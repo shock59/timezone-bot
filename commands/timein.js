@@ -4,11 +4,11 @@ import moment from "moment-timezone";
 const info = {
     data: new SlashCommandBuilder()
         .setDescription(
-            "Set your timezone, either a TZ entry or the offset from UTC",
+            "Get the time in a scpecific timezone",
         )
         .addStringOption(option =>
 		option.setName('timezone')
-			.setDescription('Your timezone.')
+			.setDescription('Your timezone')
 			.setRequired(true)),
 
     async interaction(interaction) {
